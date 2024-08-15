@@ -31,7 +31,7 @@ const executeSignup = async () => {
 
 </script>
 
-<style>
+<style scoped>
 input {
   @apply bg-white border rounded-full px-5 text-neutral-700 py-2
 }

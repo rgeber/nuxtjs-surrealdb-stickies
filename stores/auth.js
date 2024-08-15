@@ -12,6 +12,23 @@ export const useAuth = defineStore({
         setDb(db) {
             this.db = db
         },
+        async init() {
+            if (this.initialized === true) return
+
+            const token = localStorage.getItem('surrealDbAuthToken')
+
+            if (token) {
+                console.log('Found SurrealDB auth token. Re-Authenticating')
+                try {
+                    await this.db.authenticate(token)
+                    await this.refresh()
+                } catch (e) {
+                    console.error(e)
+                }
+            }
+
+            this.initialized = true
+        },
         async refresh(db) {
             const result = await this.db.query('$auth.*')
             if (result[0]) {
@@ -31,6 +48,7 @@ export const useAuth = defineStore({
 
                 if (token) {
                     console.debug('Auth token', token)
+                    localStorage.setItem('surrealDbAuthToken', token)
                     await this.refresh()
                 }
 
@@ -51,6 +69,7 @@ export const useAuth = defineStore({
 
                 if (token) {
                     console.debug('Auth token', token)
+                    localStorage.setItem('surrealDbAuthToken', token)
                     await this.refresh()
                 }
 
@@ -61,6 +80,8 @@ export const useAuth = defineStore({
         async signout() {
             this.authenticated = false
             this.user = null
+            localStorage.removeItem('surrealDbAuthToken')
+            await this.db.invalidate()
         }
     }
 })

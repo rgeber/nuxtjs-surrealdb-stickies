@@ -21,10 +21,6 @@ const password = ref('123')
 
 const auth = useAuth()
 
-onBeforeMount(() => {
-  auth.refresh()
-})
-
 const executeLogin = async () => {
   console.debug('Logging in')
 
@@ -33,7 +29,7 @@ const executeLogin = async () => {
 
 </script>
 
-<style>
+<style scoped>
 input {
   @apply bg-white border rounded-full px-5 text-neutral-700 py-2
 }
