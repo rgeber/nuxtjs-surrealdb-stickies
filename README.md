@@ -1,75 +1,20 @@
-# Nuxt 3 Minimal Starter
+# SurreadDB Nuxt.js Stickies Example
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is an adaptation of the official SurrealDB [stickies v2 example](https://github.com/surrealdb/examples/tree/main/notes-v2)
+created using Nuxt and Vue.
 
-## Setup
+**This is not mean for productive use**
 
-Make sure to install the dependencies:
+The example aims to demonstrate the following:
 
-```bash
-# npm
-npm install
+* How to set up a nuxt project with SurrealDB
+* How to manage frontend users using SurrealDB
+* Using surrealdb.js
 
-# pnpm
-pnpm install
+Note from the author: My personal goal was to understand SurrealDB better and find a way to use it as a no fuss backend
+for future web applications.
 
-# yarn
-yarn install
+## Usage
 
-# bun
-bun install
-```
+> TODO
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
