@@ -9,8 +9,13 @@
       <auth-login class="md:w-1/2 mx-auto bg-amber-200 p-5 rounded-3xl shadow-xl"/>
       <auth-signup class="md:w-1/2 mx-auto bg-emerald-200 p-5 rounded-3xl shadow-xl"/>
     </section>
+
+
     <section v-show="auth.initialized && auth.authenticated">
-      <auth-logout-button/>
+      <auth-logout-button class="my-12"/>
+
+      <stickies-sticky-grid/>
+
     </section>
   </main>
 </template>

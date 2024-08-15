@@ -4,7 +4,7 @@ DEFINE TABLE sticky SCHEMAFULL
         FOR select, update, delete WHERE author = $auth.id;
 
 DEFINE FIELD content ON sticky TYPE string DEFAULT "";
-DEFINE FIELD color ON sticky TYPE string ASSERT $value IN ['pink', 'purple'];
+DEFINE FIELD color ON sticky TYPE string ASSERT $value IN ['light', 'dark'];
 DEFINE FIELD author ON sticky TYPE record<user> 
     VALUE $before OR $auth.id 
     DEFAULT $auth.id;
