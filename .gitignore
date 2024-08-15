@@ -25,3 +25,4 @@ logs
 
 # DB files
 *.db
+history.txt

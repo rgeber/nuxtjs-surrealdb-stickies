@@ -8,19 +8,27 @@
 </template>
 
 <script setup>
-// import Surreal, {RecordId, Table} from "surrealdb.js";
-//
-// onBeforeMount(async () => {
-//   const db = new Surreal();
-//
-// // Connect to the database
-//   await db.connect("http://127.0.0.1:3001/rpc");
-//
-// // Select a specific namespace / database
-//   await db.use({
-//     namespace: "test",
-//     database: "test"
-//   });
+import Surreal, {RecordId, Table} from "surrealdb.js";
+
+onBeforeMount(async () => {
+  const db = new Surreal();
+
+  await db.connect("http://127.0.0.1:3001/rpc");
+
+  await db.use({
+    namespace: "test",
+    database: "test"
+  });
+
+  await db.signup({
+    namespace: 'test',
+    database: 'test',
+    scope: 'user',
+    name: 'hans',
+    username: 'hans',
+    password: '123'
+  })
+
 //
 // // Signin as a namespace, database, or root user
 //   await db.signin({
@@ -61,5 +69,5 @@
 //   );
 //
 //   console.log(groups)
-// })
+})
 </script>

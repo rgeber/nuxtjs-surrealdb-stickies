@@ -20,7 +20,7 @@
 const username = ref(null)
 const password = ref(null)
 
-const executeLogin = () => {
+const executeLogin = async () => {
   console.debug('Logging in')
 }
 
