@@ -10,9 +10,12 @@
       <input type="password" placeholder="Password" v-model="password">
     </div>
 
-    <button class="mt-5" @click="executeSignup">
-      Signup
+
+    <button class="mt-5 flex items-center justify-center min-h-8" @click="executeSignup">
+      <icon v-if="auth.authInProgress" name="line-md:loading-twotone-loop" />
+      <template v-else>Signup</template>
     </button>
+
   </div>
 </template>
 
@@ -26,7 +29,7 @@ const auth = useAuth()
 
 const executeSignup = async () => {
   console.debug('Signing up')
-  auth.signup('user', name.value, username.value, password.value)
+  await auth.signup('user', name.value, username.value, password.value)
 }
 
 </script>

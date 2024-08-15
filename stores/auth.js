@@ -6,7 +6,8 @@ export const useAuth = defineStore({
         db: null,
         initialized: false,
         authenticated: false,
-        user: null
+        user: null,
+        authInProgress: false
     }),
     actions: {
         setDb(db) {
@@ -37,6 +38,9 @@ export const useAuth = defineStore({
             }
         },
         async signin(scope, username, password) {
+            if (this.authInProgress === true) return
+            this.authInProgress = true
+
             try {
                 const token = await this.db.signin({
                     namespace: this.db.connection.namespace,
@@ -55,8 +59,12 @@ export const useAuth = defineStore({
             } catch (e) {
                 console.error(e)
             }
+            this.authInProgress = false
         },
         async signup(scope, name, username, password) {
+            if (this.authInProgress === true) return
+            this.authInProgress = true
+
             try {
                 const token = await this.db.signup({
                     namespace: this.db.connection.namespace,
@@ -76,6 +84,7 @@ export const useAuth = defineStore({
             } catch (e) {
                 console.error(e)
             }
+            this.authInProgress = false
         },
         async signout() {
             this.authenticated = false

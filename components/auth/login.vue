@@ -9,8 +9,9 @@
       <input type="password" placeholder="Password" v-model="password">
     </div>
 
-    <button class="mt-5" @click="executeLogin">
-      Login
+    <button class="mt-5 flex items-center justify-center min-h-8" @click="executeLogin">
+      <icon v-if="auth.authInProgress" name="line-md:loading-twotone-loop" />
+      <template v-else>Login</template>
     </button>
   </div>
 </template>
