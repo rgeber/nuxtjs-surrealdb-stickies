@@ -6,7 +6,7 @@
           <template v-else>TAGS!</template>
         </div>
         <div>
-          <icon name="line-md:menu-to-close-alt-transition"/>
+          <icon name="line-md:menu-to-close-alt-transition" @click="stickies.remove(index)"/>
         </div>
       </div>
       <textarea class="w-full h-52 bg-transparent p-2 text-lg font-serif" placeholder="Your note ..."></textarea>
@@ -14,6 +14,8 @@
 </template>
 
 <script setup>
+import {useStickies} from "~/stores/stickies.js";
+
 const props = defineProps({
   data: {
     type: Object,
@@ -24,4 +26,6 @@ const props = defineProps({
     required: true
   }
 })
+
+const stickies = useStickies()
 </script>

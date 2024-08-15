@@ -24,12 +24,15 @@ export const useStickies = defineStore({
                 switch (action) {
                     case 'CREATE':
                         console.debug('Live query Create', result)
+                        this.stickies.push(result)
                         break;
                     case 'UPDATE':
                         console.debug('Live query Update', result)
                         break;
-                    case 'Delete':
+                    case 'DELETE':
                         console.debug('Live query Delete', result)
+                        const localIndex = this.stickies.findIndex(sticky => sticky.id.id === result.id.id)
+                        if (localIndex >= 0) this.stickies.splice(localIndex, 1)
                         break;
                 }
             })
@@ -47,19 +50,23 @@ export const useStickies = defineStore({
             console.debug('Add Sticky')
             const auth = useAuth()
 
-            const sticky = {
+            await this.db.create('sticky', {
                 ...getDefaultSticky(),
                 author: auth.user.id
-            }
+            })
 
-            console.log(sticky)
-            this.stickies.push(sticky)
-            await this.db.create('sticky', sticky)
         },
-        remove() {
-            console.debug('Remove Sticky')
+        async remove(index) {
+            console.debug('Remove Sticky', index)
+            try {
+                const result = await this.db.delete(this.stickies[index].id)
+                this.stickies.splice(index, 1)
+                console.debug('Sticky removed in database', result)
+            } catch (e) {
+                console.error(e)
+            }
         },
-        update() {
+        async update() {
             console.debug('Update Sticky')
         },
     }

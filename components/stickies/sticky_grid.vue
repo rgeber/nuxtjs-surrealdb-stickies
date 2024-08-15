@@ -1,9 +1,9 @@
 <template>
   <div class="grid grid-cols-2 gap-2">
-    <stickies-sticky v-for="(stickyData, stickyIndex) in stickyList" :data="stickyData" :index="stickyIndex" :key="stickyData.uuid"/>
+    <stickies-sticky v-for="(stickyData, stickyIndex) in stickyList" :data="stickyData" :index="stickyIndex" :key="stickyData.id"/>
   </div>
 
-  <button class="" @click="addSticky">add</button>
+  <button class="" @click="stickies.add()">add</button>
 
 </template>
 
