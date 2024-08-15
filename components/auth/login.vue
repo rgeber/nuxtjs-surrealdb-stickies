@@ -16,12 +16,33 @@
 </template>
 
 <script setup>
+import Surreal from "surrealdb.js";
 
-const username = ref(null)
-const password = ref(null)
+const username = ref('admin')
+const password = ref('123')
 
 const executeLogin = async () => {
   console.debug('Logging in')
+
+  const db = new Surreal()
+
+  // Connect to the database
+  await db.connect("http://localhost:3001/rpc")
+  await db.use({namespace: 'test', database: 'test'})
+
+  try {
+    const token = await db.signin({
+      namespace: 'test',
+      database: 'test',
+      scope: 'user',
+      username: username.value,
+      password: password.value
+    })
+
+    console.debug('Token received', token)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 </script>

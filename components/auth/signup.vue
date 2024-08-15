@@ -28,7 +28,6 @@ const executeSignup = async () => {
 
   const db = new Surreal()
 
-
   // Connect to the database
   await db.connect("http://localhost:3001/rpc")
   await db.use({namespace: 'test', database: 'test'})
@@ -47,8 +46,6 @@ const executeSignup = async () => {
   } catch (e) {
     console.error(e)
   }
-
-
 }
 
 </script>
