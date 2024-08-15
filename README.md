@@ -16,5 +16,16 @@ for future web applications.
 
 ## Usage
 
-> TODO
+Starting the nuxt dev script starts the entire application including the SurrealDB daemon. The daemon is configured to
+use `dev.db` as a persistent file storage. You'll find that directory in the project root once SurrealDB was started.
+
+```bash
+npm run dev
+```
+
+Once SurrealDB is running import the `surql` files:
+
+```bash
+find _surql/ -maxdepth 1 -iname "*.surql" -exec surreal import --conn http://localhost:3001 --user root --pass root --ns test --db test {} \;
+```
 
