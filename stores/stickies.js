@@ -25,7 +25,10 @@ export const useStickies = defineStore({
                 switch (action) {
                     case 'CREATE':
                         console.debug('Live query Create', result)
-                        this.stickies.push(result)
+                        {
+                            const localIndex = this.stickies.findIndex(sticky => sticky.id.id === result.id.id)
+                            if (localIndex < 0) this.stickies.push(result)
+                        }
                         break;
                     case 'UPDATE':
                         console.debug('Live query Update', result)
@@ -57,10 +60,12 @@ export const useStickies = defineStore({
             console.debug('Add Sticky')
             const auth = useAuth()
 
-            await this.db.create('sticky', {
+            const response =await this.db.create('sticky', {
                 ...getDefaultSticky(),
                 author: auth.user.id
             })
+
+            this.stickies.push(response)
 
         },
         async remove(index) {

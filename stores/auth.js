@@ -1,4 +1,5 @@
 import {defineStore} from 'pinia'
+import {useStickies} from "~/stores/stickies.js";
 
 export const useAuth = defineStore({
     id: 'auth',
@@ -36,6 +37,8 @@ export const useAuth = defineStore({
                 this.user = result[0]
                 this.authenticated = true
             }
+            const stickies = useStickies()
+            await stickies.load();
         },
         async signin(scope, username, password) {
             if (this.authInProgress === true) return
