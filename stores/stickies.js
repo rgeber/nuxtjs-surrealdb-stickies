@@ -29,11 +29,17 @@ export const useStickies = defineStore({
                         break;
                     case 'UPDATE':
                         console.debug('Live query Update', result)
+                        {
+                            const localIndex = this.stickies.findIndex(sticky => sticky.id.id === result.id.id)
+                            if (localIndex >= 0) this.stickies[localIndex] = result
+                        }
                         break;
                     case 'DELETE':
                         console.debug('Live query Delete', result)
-                        const localIndex = this.stickies.findIndex(sticky => sticky.id.id === result.id.id)
-                        if (localIndex >= 0) this.stickies.splice(localIndex, 1)
+                        {
+                            const localIndex = this.stickies.findIndex(sticky => sticky.id.id === result.id.id)
+                            if (localIndex >= 0) this.stickies.splice(localIndex, 1)
+                        }
                         break;
                 }
             })
