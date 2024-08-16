@@ -1,4 +1,5 @@
 import {defineStore} from 'pinia'
+import {RecordId} from "surrealdb.js";
 
 const getDefaultSticky = () => ({
     content: '',
@@ -66,8 +67,14 @@ export const useStickies = defineStore({
                 console.error(e)
             }
         },
-        async update() {
+        async update(index, bodyContent) {
             console.debug('Update Sticky')
+            const sticky = this.stickies[index]
+            sticky.content = bodyContent
+            await this.db.merge(
+                sticky.id,
+                sticky
+            )
         },
     }
 })
